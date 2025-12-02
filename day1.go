@@ -47,11 +47,9 @@ func NewCircularList(n int) *Node[int] {
 	return head
 }
 
-const (
-	moveRight       = "R"
-	moveLeft        = "L"
-	initialPosition = 50
-)
+var initialPosition = 50
+var moveRight = "R"
+var moveLeft = "L"
 
 func DayOne() int {
 	safeDial := NewCircularList(100)
