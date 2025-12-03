@@ -1,4 +1,4 @@
-package main
+package day1
 
 import (
 	"bufio"
@@ -51,14 +51,14 @@ var initialPosition = 50
 var moveRight = "R"
 var moveLeft = "L"
 
-func DayOne() int {
+func Solution() int {
 	safeDial := NewCircularList(100)
 	password := 0
 	currentNode := safeDial
 	for i := 0; i < initialPosition; i++ {
 		currentNode = currentNode.MoveNext()
 	}
-	file, _ := os.Open("day1-input.txt")
+	file, _ := os.Open("day1/day1-input.txt")
 	defer func(file *os.File) {
 		err := file.Close()
 		if err != nil {
