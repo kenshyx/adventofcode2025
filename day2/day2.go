@@ -1,4 +1,4 @@
-package main
+package day2
 
 import (
 	"bufio"
@@ -24,8 +24,8 @@ func IsMadeOfRepeats(s, sub string) bool {
 	return true
 }
 
-func DayTwo() int {
-	file, _ := os.Open("day2-input.txt")
+func Solution() int {
+	file, _ := os.Open("day2/day2-input.txt")
 	defer func(file *os.File) {
 		err := file.Close()
 		if err != nil {

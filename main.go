@@ -2,11 +2,14 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/kenshyx/adventofcode2025/day1"
+	"github.com/kenshyx/adventofcode2025/day2"
+	"github.com/kenshyx/adventofcode2025/day3"
 )
 
 func main() {
-	solution1 := DayOne()
-	fmt.Println("Solution day one", solution1)
-	solution2 := DayTwo()
-	fmt.Println("Solution day two", solution2)
+	fmt.Println("Solution day one:", day1.Solution())
+	fmt.Println("Solution day two:", day2.Solution())
+	fmt.Println("Solutions for day three:", day3.SolutionPart1(), day3.SolutionPart2())
 }
