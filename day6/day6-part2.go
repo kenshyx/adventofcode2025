@@ -19,16 +19,13 @@ func SolutionPart2() int {
 	maxChars := 0
 	for {
 		line, err := reader.ReadString('\n')
-		if strings.TrimSpace(line) == "" {
+		if err != nil {
 			break
 		}
 		ll := strings.Split(line, "")
 		matrix2 = append(matrix2, ll)
 		if len(ll) > maxChars {
 			maxChars = len(ll)
-		}
-		if err != nil {
-			break
 		}
 
 	}
