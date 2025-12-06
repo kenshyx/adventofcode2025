@@ -8,6 +8,7 @@ import (
 	"github.com/kenshyx/adventofcode2025/day3"
 	"github.com/kenshyx/adventofcode2025/day4"
 	"github.com/kenshyx/adventofcode2025/day5"
+	"github.com/kenshyx/adventofcode2025/day6"
 )
 
 func main() {
@@ -16,4 +17,5 @@ func main() {
 	fmt.Println("Solutions for day three:", day3.SolutionPart1(), day3.SolutionPart2())
 	fmt.Println("Solutions for day four:", day4.SolutionPart1(), day4.SolutionPart2())
 	fmt.Println("Solutions for day five:", day5.SolutionPart1(), day5.SolutionPart2())
+	fmt.Println("Solutions for day six:", day6.SolutionPart1(), day6.SolutionPart2())
 }

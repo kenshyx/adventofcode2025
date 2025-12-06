@@ -51,7 +51,6 @@ func SolutionPart1() int {
 				}
 			}
 		}
-
 	}
 	return counter
 }
