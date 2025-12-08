@@ -9,6 +9,10 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type Solution struct {
+	Part1, Part2 int
+}
+
 func FetchInput(url string) (*bufio.Reader, *http.Response) {
 
 	if url == "" {
