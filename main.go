@@ -11,6 +11,7 @@ import (
 	"github.com/kenshyx/adventofcode2025/day6"
 	"github.com/kenshyx/adventofcode2025/day7"
 	"github.com/kenshyx/adventofcode2025/day8"
+	"github.com/kenshyx/adventofcode2025/day9"
 )
 
 func main() {
@@ -22,4 +23,5 @@ func main() {
 	fmt.Println("Solutions for day six:", day6.SolutionPart1(), day6.SolutionPart2())
 	fmt.Println("Solutions for day seven:", day7.SolutionPart1(), day7.SolutionPart2())
 	fmt.Printf("Solutions for day eight: %+v\n", day8.GetSolution("https://adventofcode.com/2025/day/8/input"))
+	fmt.Printf("Solutions for day nine: %+v\n", day9.GetSolution("https://adventofcode.com/2025/day/9/input"))
 }

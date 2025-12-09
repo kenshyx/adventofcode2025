@@ -23,7 +23,7 @@ type DSU struct {
 	components int
 }
 
-// NewDSU disjointed set
+// NewDSU disjointed set union
 func NewDSU(n int) *DSU {
 	parent := make([]int, n)
 	size := make([]int, n)
