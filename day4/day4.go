@@ -1,10 +1,9 @@
 package day4
 
 import (
-	"bufio"
-	"log"
-	"os"
 	"strings"
+
+	"github.com/kenshyx/adventofcode2025/utils"
 )
 
 var directions = [8][2]int{
@@ -42,15 +41,11 @@ func extractMatchingNeighbors(matrix [][]string, row int, column int) []string {
 	return foundNeighbors
 }
 
-func SolutionPart1() int {
-	file, _ := os.Open("day4/input.txt")
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(file)
-	reader := bufio.NewReader(file)
+func GetSolution(authenticatedR *utils.UrlWithAuth) utils.Solution {
+	reader, resp := authenticatedR.FetchInput()
+	if resp != nil {
+		defer resp.Body.Close()
+	}
 	var grid [][]string
 	gridRow := 0
 	for {
@@ -67,14 +62,40 @@ func SolutionPart1() int {
 	}
 
 	totalRolls := 0
-	for i, j := range grid {
-		for k, v := range j {
-			neighbors := extractMatchingNeighbors(grid, i, k)
-			if len(neighbors) < 4 && v == rollOfPaper {
-				totalRolls++
+	var valuesToRemove [][2]int
+	var solution utils.Solution
+	for {
+		found := false
+		for i, j := range grid {
+			for k, v := range j {
+				neighbors := extractMatchingNeighbors(grid, i, k)
+				if len(neighbors) < 4 && v == rollOfPaper {
+					valuesToRemove = append(valuesToRemove, [2]int{i, k})
+					totalRolls++
+				}
 			}
 		}
+
+		if solution.Part1 == 0 {
+			solution.Part1 = totalRolls
+		}
+
+		if len(valuesToRemove) > 0 {
+			found = true
+		}
+
+		if !found {
+			break
+		}
+
+		for _, vv := range valuesToRemove {
+			grid[vv[0]][vv[1]] = "x"
+		}
+		// reset
+		valuesToRemove = valuesToRemove[:0]
 	}
 
-	return totalRolls
+	solution.Part2 = totalRolls
+
+	return solution
 }

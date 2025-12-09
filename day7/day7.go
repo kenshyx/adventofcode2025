@@ -48,8 +48,8 @@ func parseRow(row int, pos []int) int {
 	return parseRow(row+1, newPos)
 }
 
-func SolutionPart1() int {
-	reader, resp := utils.FetchInput("https://adventofcode.com/2025/day/7/input")
+func GetSolution(authenticatedR *utils.UrlWithAuth) utils.Solution {
+	reader, resp := authenticatedR.FetchInput()
 	if resp != nil {
 		defer resp.Body.Close()
 	}
@@ -77,5 +77,9 @@ func SolutionPart1() int {
 			break
 		}
 	}
-	return totalSplits
+
+	return utils.Solution{
+		Part1: totalSplits,
+		Part2: CountPaths(matrix),
+	}
 }

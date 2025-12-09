@@ -1,12 +1,11 @@
 package day1
 
 import (
-	"bufio"
-	"log"
-	"os"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/kenshyx/adventofcode2025/utils"
 )
 
 type Node[T any] struct {
@@ -51,22 +50,18 @@ var initialPosition = 50
 var moveRight = "R"
 var moveLeft = "L"
 
-func Solution() int {
+func GetSolution(authenticatedR *utils.UrlWithAuth) utils.Solution {
+	reader, resp := authenticatedR.FetchInput()
+	if resp != nil {
+		defer resp.Body.Close()
+	}
 	safeDial := NewCircularList(100)
 	password := 0
+	pwd1 := 0
 	currentNode := safeDial
 	for i := 0; i < initialPosition; i++ {
 		currentNode = currentNode.MoveNext()
 	}
-	file, _ := os.Open("day1/day1-input.txt")
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(file)
-
-	reader := bufio.NewReader(file)
 	re := regexp.MustCompile(`\d+`)
 	for {
 		line, err := reader.ReadString('\n')
@@ -99,8 +94,12 @@ func Solution() int {
 
 		if currentNode != nil && currentNode.Value == 0 {
 			password++
+			pwd1++
 		}
 
 	}
-	return password
+	return utils.Solution{
+		Part1: pwd1,
+		Part2: password,
+	}
 }

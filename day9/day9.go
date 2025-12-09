@@ -19,8 +19,8 @@ type Rectangle struct {
 	Area           int
 }
 
-func GetSolution(url string) utils.Solution {
-	reader, resp := utils.FetchInput(url)
+func GetSolution(authenticatedR *utils.UrlWithAuth) utils.Solution {
+	reader, resp := authenticatedR.FetchInput()
 	solution := utils.Solution{}
 
 	if resp != nil {

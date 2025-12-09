@@ -1,11 +1,11 @@
 package day2
 
 import (
-	"bufio"
 	"log"
-	"os"
 	"strconv"
 	"strings"
+
+	"github.com/kenshyx/adventofcode2025/utils"
 )
 
 func IsMadeOfRepeats(s, sub string) bool {
@@ -24,17 +24,13 @@ func IsMadeOfRepeats(s, sub string) bool {
 	return true
 }
 
-func Solution() int {
-	file, _ := os.Open("day2/day2-input.txt")
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(file)
-
-	reader := bufio.NewReader(file)
+func GetSolution(authenticatedR *utils.UrlWithAuth) utils.Solution {
+	reader, resp := authenticatedR.FetchInput()
+	if resp != nil {
+		defer resp.Body.Close()
+	}
 	sum := 0
+	sum1 := 0
 	for {
 		line, err := reader.ReadString('\n')
 		if err != nil {
@@ -56,6 +52,7 @@ func Solution() int {
 				right := curr[mid:]
 				if left == right {
 					sum += i
+					sum1 += i
 					continue
 				}
 				for l := 1; l <= mid; l++ {
@@ -71,5 +68,8 @@ func Solution() int {
 			}
 		}
 	}
-	return sum
+	return utils.Solution{
+		Part1: sum1,
+		Part2: sum,
+	}
 }

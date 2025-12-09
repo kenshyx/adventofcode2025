@@ -78,7 +78,3 @@ func CountPaths(grid [][]string) int {
 
 	return total
 }
-
-func SolutionPart2() int {
-	return CountPaths(matrix)
-}

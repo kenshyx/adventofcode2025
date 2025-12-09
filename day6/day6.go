@@ -15,8 +15,8 @@ var ops = map[string]func(int, int) int{
 var matrix [][]int
 var operators []string
 
-func SolutionPart1() int {
-	reader, resp := utils.FetchInput("https://adventofcode.com/2025/day/6/input")
+func GetSolution(authenticatedR *utils.UrlWithAuth) utils.Solution {
+	reader, resp := authenticatedR.FetchInput()
 	if resp != nil {
 		defer resp.Body.Close()
 	}
@@ -61,5 +61,8 @@ func SolutionPart1() int {
 		total += subTotal
 	}
 
-	return total
+	return utils.Solution{
+		Part1: total,
+		Part2: SolutionPart2(authenticatedR),
+	}
 }

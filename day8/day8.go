@@ -64,8 +64,8 @@ func distance3dSquared(a, b Point) int64 {
 	return dx*dx + dy*dy + dz*dz
 }
 
-func GetSolution(url string) utils.Solution {
-	reader, resp := utils.FetchInput(url)
+func GetSolution(authenticatedR *utils.UrlWithAuth) utils.Solution {
+	reader, resp := authenticatedR.FetchInput()
 	var points []Point
 	if resp != nil {
 		defer resp.Body.Close()

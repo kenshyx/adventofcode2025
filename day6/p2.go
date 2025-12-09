@@ -10,9 +10,9 @@ import (
 
 var matrix2 [][]string
 
-func SolutionPart2() int {
+func SolutionPart2(authenticatedR *utils.UrlWithAuth) int {
 
-	reader, resp := utils.FetchInput("https://adventofcode.com/2025/day/6/input")
+	reader, resp := authenticatedR.FetchInput()
 	if resp != nil {
 		defer resp.Body.Close()
 	}

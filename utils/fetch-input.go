@@ -2,39 +2,46 @@ package utils
 
 import (
 	"bufio"
-	"log"
+	"fmt"
 	"net/http"
 	"os"
-
-	"github.com/joho/godotenv"
 )
 
 type Solution struct {
 	Part1, Part2 int
 }
 
-func FetchInput(url string) (*bufio.Reader, *http.Response) {
+type UrlWithAuth struct {
+	url    string
+	auth   *http.Cookie
+	client *http.Client
+}
 
-	if url == "" {
+func CreateClientWithAuth(auth *http.Cookie, client *http.Client) *UrlWithAuth {
+	return &UrlWithAuth{auth: auth, client: client}
+}
+
+const UrlTpl = "https://adventofcode.com/%d/day/%d/input"
+
+func (resource *UrlWithAuth) GetPuzzle(year int, day int) *UrlWithAuth {
+	resource.url = fmt.Sprintf(UrlTpl, year, day)
+	return resource
+}
+
+func (resource *UrlWithAuth) FetchInput() (*bufio.Reader, *http.Response) {
+
+	if resource.url == "" {
 		return bufio.NewReader(os.Stdin), nil
 	}
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-	sessionCookie := os.Getenv("ADVENT_SESSION")
-	client := &http.Client{}
-	req, er := http.NewRequest("GET", url, nil)
+
+	req, er := http.NewRequest("GET", resource.url, nil)
 	if er != nil {
-		panic(err)
+		panic(er)
 	}
-	req.AddCookie(&http.Cookie{
-		Name:  "session",
-		Value: sessionCookie,
-	})
-	resp, e := client.Do(req)
+	req.AddCookie(resource.auth)
+	resp, e := resource.client.Do(req)
 	if e != nil {
-		panic(err)
+		panic(e)
 	}
 
 	reader := bufio.NewReader(resp.Body)
