@@ -2,4 +2,7 @@ module github.com/kenshyx/adventofcode2025
 
 go 1.25
 
-require github.com/joho/godotenv v1.5.1
+require (
+	github.com/aclements/go-z3 v0.0.0-20220809013456-4675d5f90ca5
+	github.com/joho/godotenv v1.5.1
+)
