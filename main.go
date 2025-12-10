@@ -8,6 +8,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/kenshyx/adventofcode2025/day1"
+	"github.com/kenshyx/adventofcode2025/day10"
 	"github.com/kenshyx/adventofcode2025/day2"
 	"github.com/kenshyx/adventofcode2025/day3"
 	"github.com/kenshyx/adventofcode2025/day4"
@@ -49,4 +50,6 @@ func main() {
 		day8.GetSolution(authenticatedR.GetPuzzle(2025, 8)))
 	fmt.Printf("Solutions for day nine: %+v\n",
 		day9.GetSolution(authenticatedR.GetPuzzle(2025, 9)))
+	fmt.Printf("Solutions for day ten: %+v\n",
+		day10.GetSolution(authenticatedR.GetPuzzle(2025, 10)))
 }
