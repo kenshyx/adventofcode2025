@@ -10,6 +10,7 @@ import (
 	"github.com/kenshyx/adventofcode2025/day1"
 	"github.com/kenshyx/adventofcode2025/day10"
 	"github.com/kenshyx/adventofcode2025/day11"
+	"github.com/kenshyx/adventofcode2025/day12"
 	"github.com/kenshyx/adventofcode2025/day2"
 	"github.com/kenshyx/adventofcode2025/day3"
 	"github.com/kenshyx/adventofcode2025/day4"
@@ -55,4 +56,6 @@ func main() {
 		day10.GetSolution(authenticatedR.GetPuzzle(2025, 10)))
 	fmt.Printf("Solutions for day 11: %+v\n",
 		day11.GetSolution(authenticatedR.GetPuzzle(2025, 11)))
+	fmt.Printf("Solutions for day 12: %+v\n",
+		day12.GetSolution(authenticatedR.GetPuzzle(2025, 12)))
 }
